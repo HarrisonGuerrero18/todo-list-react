@@ -40,5 +40,5 @@ export default function useToDoList() {
     deleteTask,
     toggleCompleted,
     updateTask,
-  };
+  };
 }
