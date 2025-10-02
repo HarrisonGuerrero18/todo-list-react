@@ -1,44 +1,18 @@
-import { useState } from "react";
+import { useAuth } from "./context/AuthContext";
+import ToDoList from "./components/ToDoList";
 
-export default function useToDoList() {
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
+export default function App() {
+  const { logout } = useAuth();
 
-  const addTask = () => {
-    if (newTask.trim() === "") return;
-
-    setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]); 
-
-    setNewTask("");
-  };
-
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
-
-  const updateTask = (id, text) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, text } : task
-      )
-    );
-  };
-
-  const toggleCompleted = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
-
-  return {
-    tasks,
-    newTask,
-    setNewTask,
-    addTask,
-    deleteTask,
-    toggleCompleted,
-    updateTask,
-  };
+  return (
+    <div className="min-h-screen bg-gray-100 p-4">
+      <button
+        className="bg-red-500 text-white px-4 py-2 rounded"
+        onClick={logout}
+      >
+        logout
+      </button>
+      <ToDoList />
+    </div>
+  );
 }

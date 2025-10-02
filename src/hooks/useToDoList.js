@@ -7,7 +7,7 @@ export default function useToDoList() {
   const addTask = () => {
     if (newTask.trim() === "") return;
 
-    setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]); 
+    setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
 
     setNewTask("");
   };
@@ -17,11 +17,7 @@ export default function useToDoList() {
   };
 
   const updateTask = (id, text) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, text } : task
-      )
-    );
+    setTasks(tasks.map((task) => (task.id === id ? { ...task, text } : task)));
   };
 
   const toggleCompleted = (id) => {
@@ -40,5 +36,5 @@ export default function useToDoList() {
     deleteTask,
     toggleCompleted,
     updateTask,
-  };
+  };
 }
